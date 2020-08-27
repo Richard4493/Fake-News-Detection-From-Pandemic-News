@@ -4,7 +4,6 @@ import numpy as  np
 P = 5
 R = 3
 end_time = time.time() + 5
-count=0
 list = []
 slist=[]
 while (time.time() < end_time):

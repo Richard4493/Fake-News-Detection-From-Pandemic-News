@@ -13,7 +13,7 @@ for i in range(5):
     mylist += [int(j)for j in input("process"+str(i+1)).split()]
 mlist = np.load(BASE_DIR +"/trained_data1.npy", allow_pickle=True)
 slist= np.load(BASE_DIR + "/trained_data2.npy", allow_pickle=True)
-model = LogisticRegression(solver='liblinear', C=10.0, random_state=0)
+model = LogisticRegression(solver='liblinear', random_state=0)
 model.fit(mlist,slist)
 if(model.predict(np.array([mylist]))[0] == 0):
     print("System is not Safe")
