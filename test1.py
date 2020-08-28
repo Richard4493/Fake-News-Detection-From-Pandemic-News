@@ -82,22 +82,22 @@ class Training:
                 rlist.append(random.randint(1, 10))
 
                 # Available instances of resources
-                avail = [rlist[0], rlist[1], rlist[2]]
+            avail = [rlist[0], rlist[1], rlist[2]]
 
                 # Maximum R that can be allocated to processes
-                maxm = [[rlist[3], rlist[4], rlist[5]], [rlist[6], rlist[7], rlist[8]],
+            maxm = [[rlist[3], rlist[4], rlist[5]], [rlist[6], rlist[7], rlist[8]],
                         [rlist[9], rlist[10], rlist[11]], [rlist[12], rlist[13], rlist[14]],
                         [rlist[15], rlist[16], rlist[17]]]
 
                 # Resources allocated to processes
-                allot = [[rlist[18], rlist[19], rlist[20]], [rlist[21], rlist[22], rlist[23]],
+            allot = [[rlist[18], rlist[19], rlist[20]], [rlist[21], rlist[22], rlist[23]],
                          [rlist[24], rlist[25], rlist[26]], [rlist[27], rlist[28], rlist[29]],
                          [rlist[30], rlist[31], rlist[32]]]
 
                 # Check system is in safe state or not
-                is_safe = isSafe(avail, maxm, allot)
-                list.append(rlist)
-                slist.append(is_safe)
+            is_safe = isSafe(avail, maxm, allot)
+            list.append(rlist)
+            slist.append(is_safe)
         np.save("trained_data1", np.array(list))
         np.save("trained_data2", np.array(slist))
 if __name__ == '__main__':

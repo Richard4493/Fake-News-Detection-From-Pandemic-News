@@ -1,7 +1,6 @@
 from sklearn.linear_model import LogisticRegression
 import numpy as np
 import os
-
 class Main:
     def __init__(self):
         BASE_DIR = os.path.dirname(os.path.abspath(__file__))
