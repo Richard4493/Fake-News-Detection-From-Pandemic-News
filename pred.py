@@ -13,10 +13,8 @@ lemmatizer = WordNetLemmatizer()
 filter_sentence = ' '
 sentence = total1
 sentence = re.sub(r'[^\w\s]', '', sentence)
-# Tokenization
 words = nltk.word_tokenize(sentence)
 words = [w for w in words if not w in stop_words]
-# Lemmatization
 for words in words:
     filter_sentence = filter_sentence + ' ' + str(lemmatizer.lemmatize(words)).lower()
 x_predict = [filter_sentence]
