@@ -1,4 +1,5 @@
 import re
+from sklearn.pipeline import Pipeline
 import pickle
 import nltk
 import pandas as pd
@@ -9,13 +10,14 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 class TrainModel():
-    def _init_(self):
+    def __init__(self):
         train = pd.read_csv('corona_fake.csv')
         train = train.fillna(' ')
-        train['total'] = train['title'] + ' ' + train['text'] + ' ' + train['source']
+        train['total'] = train['title'] + ' ' + train['text']
         train = train[['total', 'label']]
         stop_words = stopwords.words('english')
         lemmatizer = WordNetLemmatizer()
+        train_data = []
         for index, row in train.iterrows():
             filter_sentence = ''
             sentence = row['total']
@@ -24,25 +26,17 @@ class TrainModel():
             words = [w for w in words if not w in stop_words]
             for words in words:
                 filter_sentence = filter_sentence + ' ' + str(lemmatizer.lemmatize(words)).lower()
-            train.loc[index, 'total'] = filter_sentence
+                train.loc[index,'total'] =filter_sentence
 
         train = train[['total', 'label']]
-        X_train = train['total']
         Y_train = train['label']
-        count_vectorizer = CountVectorizer()
-        count_vectorizer.fit_transform(X_train)
-        freq_term_matrix = count_vectorizer.transform(X_train)
-        tfidf = TfidfTransformer(norm="l2")
-        tfidf.fit(freq_term_matrix)
-        tf_idf_matrix = tfidf.fit_transform(freq_term_matrix)
-        X_train, X_test, y_train, y_test = train_test_split(tf_idf_matrix, Y_train, random_state=0)
-        logreg = LogisticRegression(C=10.0, random_state=0)
-        logreg.fit(X_train, y_train)
-        Accuracy1 = logreg.score(X_test, y_test)
-        print("Accuracy of Logistic Regression Method is :")
-        print(Accuracy1)
+        X_train  = train['total']
+        x_train,x_test,y_train,y_test = train_test_split(X_train, Y_train, test_size=0.2, random_state=1)
+        pipe1 = Pipeline([('vect', CountVectorizer()), ('tfidf', TfidfTransformer()), ('model', LogisticRegression())])
+        model = pipe1.fit(x_train,y_train)
+        print("Accuracy : " + str(round(model.score(x_test,y_test),3)*100) + "%")
         fake_news_model = open('fake_news_model.sav', 'wb')
-        pickle.dump(logreg, fake_news_model)
+        pickle.dump(model, fake_news_model)
         fake_news_model.close()
-if __name__ == '_main_':
+if __name__ == '__main__':
     TrainModel()
