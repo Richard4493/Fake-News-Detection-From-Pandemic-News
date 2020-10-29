@@ -1,6 +1,8 @@
 Fake data detection from pandemic data  using twitter.
+
 Description: Collect data from twitter about covid. Train the machine to detect fake news using a dataset using the textual features of news.
             Using the trained model to classify fake news and real news from twitter.
+            
 Methodology Overview: 1.Using twitter api we collect data from twitter about covid19 and stores it into a csv file.
                       2.Using a covid news dataset we compare different classification algorithms and use the best one to train the model
                       (uses sklearn library)
