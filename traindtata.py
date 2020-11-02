@@ -10,20 +10,20 @@ from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 class TrainData():
     def __init__(self):
-        train_data = pd.read_csv('corona_fake.csv')
+        train_data = pd.read_csv('corona_fake1.csv')
         train_data = train_data.fillna(' ')
         train_data['total'] = train_data['title'] + ' ' + train_data['text']
         train_data = train_data[['total', 'label']]
         stop_words = stopwords.words('english')
         lemmatizer = WordNetLemmatizer()
         for index, row in train_data.iterrows():
-            Sentence = ''
-            Sentence = row['total']
-            words = nltk.word_tokenize(Sentence)
+            sentence = ''
+            sentence = row['total']
+            words = nltk.word_tokenize(sentence)
             words = [w for w in words if not w in stop_words]
             for words in words:
-                Sentence = Sentence + ' ' + str(lemmatizer.lemmatize(words)).lower()
-            train_data.loc[index,'total'] =Sentence
+                sentence = sentence + ' ' + str(lemmatizer.lemmatize(words)).lower()
+            train_data.loc[index,'total'] =sentence
 
         train_data = train_data[['total', 'label']]
         Y_train = train_data['label']
