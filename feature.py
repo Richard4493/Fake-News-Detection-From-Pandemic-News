@@ -26,7 +26,7 @@ class Main:
         return train
     def __init__(self):
         try:                       #File input exception handling
-            train = pd.read_csv('corona_fake_news.csv')
+            train = pd.read_csv('corona_fake1.csv')
         except IOError:
             logging.warning("Error: can\'t find the csv file or read data")
             exit()
