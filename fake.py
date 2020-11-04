@@ -17,7 +17,6 @@ class TrainModel():
         train = train[['total', 'label']]
         stop_words = stopwords.words('english')
         lemmatizer = WordNetLemmatizer()
-        train_data = []
         for index, row in train.iterrows():
             filter_sentence = ''
             sentence = row['total']
@@ -26,7 +25,7 @@ class TrainModel():
             words = [w for w in words if not w in stop_words]
             for words in words:
                 filter_sentence = filter_sentence + ' ' + str(lemmatizer.lemmatize(words)).lower()
-                train.loc[index,'total'] =filter_sentence
+            train.loc[index,'total'] =filter_sentence
 
         train = train[['total', 'label']]
         Y_train = train['label']
