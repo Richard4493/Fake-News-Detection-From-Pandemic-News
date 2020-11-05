@@ -21,7 +21,7 @@ Results:
 1. Collected datails from about covid19news and stored it in a csv file.
 2. Compared logistic regression,decision tree and pac : logistic regression gives highest accuracy.
 
-Instructions:
-To run the code download and place the dataset (csv file) in the code directory. Clone and run the code after installing the required packages(sklearn,nltk,pandas).
-
 Status:  https://drive.google.com/drive/folders/1ZprcsdATdCBEgVGulOOqqyX1_d5tZhpb?usp=sharing
+
+Instructions:
+To run the code analysis.py download and place the dataset (corona_fake1.csv) in the code directory. Clone and run the code(analysis.py) after installing the required packages(sklearn,nltk,pandas).
