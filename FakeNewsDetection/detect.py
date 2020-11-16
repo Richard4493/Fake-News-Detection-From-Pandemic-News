@@ -19,7 +19,7 @@ class Detect:
         Y_train = train['label']
         tfidf = TfidfVectorizer(use_idf=True,
                                 norm='l2',
-                                smooth_idf=True)
+                                smooth_idf=True,ngram_range=(2,2))
         tf_idf_matrix = tfidf.fit_transform(X_train)
         X_train, self.X_test, y_train, self.y_test = train_test_split(tf_idf_matrix,Y_train, random_state=0)
         self.t = Train(X_train , y_train)
