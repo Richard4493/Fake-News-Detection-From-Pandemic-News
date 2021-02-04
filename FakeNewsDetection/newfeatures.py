@@ -15,6 +15,10 @@ class WordLematization(BaseEstimator, TransformerMixin):
     def __init__(self):
         self.word_lemmatizer = WordNetLemmatizer()
 
+    def tokenize(self, data):
+        data = [entry.lower() for entry in data]
+        data = [word_tokenize(entry) for entry in data]
+        return data
     def lemmatizer(self,data):
         stop_words = stopwords.words('english')
         train = []
@@ -46,9 +50,9 @@ class WordLematization(BaseEstimator, TransformerMixin):
         logging.info("preprocessing done")
         return train
     def transform(self, df, y=None):
-        df = self.tokenize(df)
-        return  self.lemmatizerNew(df)
-        #return self.lemmatizer(df)
+        #df = self.tokenize(df)
+        #return  self.lemmatizerNew(df)
+        return self.lemmatizer(df)
 
     def fit(self, df, y=None):
         return self    

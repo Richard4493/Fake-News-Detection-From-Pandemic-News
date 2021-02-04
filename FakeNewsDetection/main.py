@@ -23,3 +23,23 @@ class fake_news_detection:
         self.tr.train(model)
     def predict(self,text,title):
         return Prediction().predict(text , title)
+    def compare(self,force =False):
+        if(not force):
+            try :
+                data = pk.load(open("compare_model.sav" , "rb"))
+            except IOError:
+                logging.warning("file not found, traning all model")
+                m = self.tr.compare()
+                data = {'accuracy': [self.tr.getAccuracy(model) for _, model in m.items()],
+                        'cmatrix': [self.tr.getConfmatrix(model) for _, model in m.items()],
+                        'creport': [self.tr.getReport(model) for _, model in m.items()]}
+
+                pk.dump(data, open("compare_model.sav", 'wb'))
+        else:
+                m= self.tr.compare()
+                data= {'accuracy':[self.tr.getAccuracy(model) for _ , model in m.items()],
+                    'cmatrix':[self.tr.getConfmatrix(model) for _ , model in m.items()],
+                    'creport':[self.tr.getReport(model) for _, model in m.items()]}
+
+                pk.dump(data, open("compare_model.sav", 'wb'))
+        return data
