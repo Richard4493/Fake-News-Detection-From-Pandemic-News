@@ -29,10 +29,26 @@ class WordLematization(BaseEstimator, TransformerMixin):
             train.append(str(filter_sentence))
         logging.info("preprocessing done")
         return train
-
+    def lemmatizerNew(self,data_final):
+        tag_map = defaultdict(lambda : wn.NOUN)
+        tag_map['J'] = wn.ADJ
+        tag_map['V'] = wn.VERB
+        tag_map['R'] = wn.ADV
+        train = []
+        for entry in data_final:
+            Final_words = []
+            word_Lemmatized = WordNetLemmatizer()
+            for word, tag in pos_tag(entry):
+                if word not in stopwords.words('english') and word.isalpha():
+                    word_Final = word_Lemmatized.lemmatize(word,tag_map[tag[0]])
+                    Final_words.append(word_Final)
+            train.append(str(Final_words))
+        logging.info("preprocessing done")
+        return train
     def transform(self, df, y=None):
-
-        return self.lemmatizer(df)
+        df = self.tokenize(df)
+        return  self.lemmatizerNew(df)
+        #return self.lemmatizer(df)
 
     def fit(self, df, y=None):
         return self    
