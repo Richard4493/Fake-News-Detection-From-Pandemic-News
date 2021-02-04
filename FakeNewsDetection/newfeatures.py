@@ -29,6 +29,10 @@ class WordLematization(BaseEstimator, TransformerMixin):
             train.append(str(filter_sentence))
         logging.info("preprocessing done")
         return train
+    def tokenize(self,data):
+        data = [entry.lower() for entry in data]
+        data= [word_tokenize(entry) for entry in data]
+        return data
     def lemmatizerNew(self,data_final):
         tag_map = defaultdict(lambda : wn.NOUN)
         tag_map['J'] = wn.ADJ
