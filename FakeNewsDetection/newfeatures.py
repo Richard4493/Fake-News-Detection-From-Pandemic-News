@@ -10,6 +10,71 @@ from nltk import pos_tag
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 
+
+class WordCountExtractor(BaseEstimator, TransformerMixin):
+
+    def __init__(self):
+        pass
+
+    def word_count(self, data):
+        data = data.str.split().str.len()
+        logging.info("word count extracted")
+        return data
+
+    def transform(self, df, y=None):
+        data = self.word_count(df)
+        data = pandas.DataFrame(data)
+        return data
+
+    def fit(self, df, y=None):
+        return self
+
+
+class CapitalWordCountExtractor(BaseEstimator, TransformerMixin):
+
+    def __init__(self):
+        pass
+
+    def title_capital_word_count(self, data):
+        cap_count = []
+        for row in data:
+            count = 0
+            for letter in row.split(" "):
+                if (letter.isupper()):
+                    count += 1
+            cap_count.append(count)
+        logging.info("cap word count extracted")
+        return cap_count
+
+    def transform(self, df, y=None):
+        return pandas.DataFrame(self.title_capital_word_count(df))
+
+    def fit(self, df, y=None):
+        return self
+
+
+class NumberCountExtractor(BaseEstimator, TransformerMixin):
+
+    def __init__(self):
+        pass
+
+    def number_presence_count(self, data):
+        num_count = []
+        for row in data:
+            count = 0
+            for letter in row.split(" "):
+                if (letter.isnumeric()):
+                    count += 1
+            num_count.append(count)
+        logging.info("number count extracted")
+        return num_count
+
+    def transform(self, df, y=None):
+        return pandas.DataFrame(self.number_presence_count(df))
+
+    def fit(self, df, y=None):
+        return self
+
 class WordLematization(BaseEstimator, TransformerMixin):
     
     def __init__(self):
