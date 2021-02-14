@@ -20,6 +20,7 @@ class Detect:
 
         X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=.10, random_state=0) 
         return X_train,X_test,y_train,y_test              
-
+    def getAccuracy(self,m):
+        return round(m.score(self.X_test, self.y_test), 3) * 100
     def save_file(self,lr,filename):
             pk.dump(lr,open(filename , 'wb'))

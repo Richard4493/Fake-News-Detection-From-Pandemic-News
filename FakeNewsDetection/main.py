@@ -1,4 +1,4 @@
-import pickle as pk
+import pickle
 import pandas
 from .detect import Detect
 from .prediction import Prediction
@@ -23,3 +23,10 @@ class fake_news_detection:
         self.tr.train(model)
     def predict(self,text,title):
         return Prediction().predict(text , title)
+    def getAccuracy(self):
+        fake_news_model = open('fake_news_model.sav', 'rb')
+        p = pickle.load(fake_news_model)
+        return self.tr.getAccuracy(p)
+
+
+
