@@ -1,8 +1,9 @@
-Installation
+#Installation 
+
 Since we are building the library FakeNewsDetection , so it can not be used alone
 but only by incorporating it into other programs. To compile the program some
 dependency libraries like nltk , sklearn ,pandas, pickle etc are needed. These li-
-braries can be installed during compile time using "pip install lib-name " command.
+braries can be installed during compile time using "/pip install lib-name /" command.
 
 #Installing FakeNewsDetection
 
