@@ -8,9 +8,10 @@ braries can be installed during compile time using "/pip install lib-name /" com
 #Installing FakeNewsDetection
 
 
-1. [Clone Git Repository](:https://gitlab.com/DesignProjectLab49/2020-CSB14-FAKEDATADETECTIONFROMPANDeMICDATA.git).
+* [Clone Git Repository](:https://gitlab.com/DesignProjectLab49/2020-CSB14-FAKEDATADETECTIONFROMPANDeMICDATA.git).
 
 git clone :https://gitlab.com/DesignProjectLab49/2020-CSB14-FAKEDATADETECTIONFROMPANDeMICDATA.git
+
 cd 2020-CSB14-FAKEDATADETECTIONFROMPANDeMICDATA
    
 #Install Package
@@ -18,3 +19,13 @@ cd 2020-CSB14-FAKEDATADETECTIONFROMPANDeMICDATA
     python 3.7 or 3.8 is recommended.
 
    command : python3.7 -m pip install 
+
+# Run Sample Code
+
+newinput.py is a sample python program devoloped in FakeNewsDetection library  .
+To run the sample program type the following command
+
+
+-python3.7 newinput.py
+
+
